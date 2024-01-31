@@ -3,9 +3,9 @@ const parent = document.querySelector('.gallery__content');
 async function getImgData() {
     try {
         const data = await fetch('data/data.json')
-        if(!data.ok){
+        if (!data.ok) {
             throw new Error('xattolik bor')
-            
+
         }
         return data.json()
     } catch (error) {
@@ -15,24 +15,24 @@ async function getImgData() {
 
 
 
-function createItem(){
-    
-    
-    getImgData().then(data  => {
+function createItem() {
+
+
+    getImgData().then(data => {
         data.map(item => {
             const img = document.createElement('img'),
-            p = document.createElement('p'),
-            view = document.createElement('span'),
-            date = document.createElement('span'),
-            itemBox = document.createElement('div'),
-            boxImg = document.createElement('div'),
-            boxFooter = document.createElement('div');
+                p = document.createElement('p'),
+                view = document.createElement('span'),
+                date = document.createElement('span'),
+                itemBox = document.createElement('div'),
+                boxImg = document.createElement('div'),
+                boxFooter = document.createElement('div');
             img.setAttribute('src', item.image)
             p.textContent = item.title
-            view.textContent = ' views ' + item.views 
+            view.textContent = ' views ' + item.views
             date.textContent = item.date
             boxImg.appendChild(img)
-           boxImg.appendChild(p)
+            boxImg.appendChild(p)
             boxFooter.appendChild(date)
             boxFooter.appendChild(view)
             itemBox.appendChild(boxImg)
@@ -43,8 +43,11 @@ function createItem(){
             boxFooter.classList.add('title')
 
         })
-        
+
     })
 }
 
 createItem()
+function getImageById(id) {
+    console.log("Hello")
+}
