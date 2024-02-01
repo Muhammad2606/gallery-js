@@ -17,7 +17,7 @@ async function getImgData() {
 
 function createItem() {
   getImgData().then((data) => {
-    data.forEach((item) => {
+    data.forEach((item, index) => {
       const img = document.createElement("img"),
         p = document.createElement("p"),
         view = document.createElement("span"),
@@ -43,32 +43,43 @@ function createItem() {
       boxFooter.classList.add("title");
       view.style.opacity = 0;
       date.style.opacity = 0;
+      
       img.addEventListener("load", () => {
         boxImg.classList.remove("loader");
-        view.style.opacity = 1;
-        date.style.opacity = 1;
-        });
-        
-
-      boxImg.addEventListener("click", () => showImageDetails(item));
-      
+        view.classList.add("fade-in");
+        date.classList.add("fade-in");
+      });
 
       parent.appendChild(itemBox);
+
+      // Add data-item-index attribute for event delegation
+      itemBox.dataset.itemIndex = index;
+    });
+
+    // Event delegation for item click
+    parent.addEventListener("click", (event) => {
+      const target = event.target;
+      const itemIndex = target.closest(".item")?.dataset.itemIndex;
+      
+      if (itemIndex !== undefined) {
+        const item = data[itemIndex];
+        showImageDetails(item);
+      }
     });
   });
 }
 
-
-
 function showImageDetails(item) {
   if (currentDetailBox) {
-    currentDetailBox.remove();
+    currentDetailBox.classList.add("closed");
+
+      currentDetailBox.remove();
+   
   }
+
   const detailBox = createDetailBox(item);
   document.body.appendChild(detailBox);
-
   currentDetailBox = detailBox;
- 
 }
 
 function createDetailBox(item) {
@@ -85,23 +96,19 @@ function createDetailBox(item) {
   views.textContent = " views " + item.views;
 
   imgBox.appendChild(image);
-
   detailBox.appendChild(imgBox);
 
   detailBox.classList.add("detail__box");
   imgBox.classList.add("img");
 
-  detailBox.addEventListener('click', Event =>{
-    const target = Event.target
-    if(detailBox === target){
-        detailBox.classList.remove("detail__box")
-    }
+  detailBox.addEventListener('click', () => {
+    detailBox.classList.add('closed');
+  
+      detailBox.remove();
 
-})
+  });
 
   return detailBox;
 }
-
-
 
 createItem();
