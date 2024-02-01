@@ -120,4 +120,17 @@ img {
 
 .gallery__content .item .title span {
   font-weight: 600;
+}
+
+.detail__box {
+  width: 100%;
+  height: 100vh;
+  transition: all 0.5s linear;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
