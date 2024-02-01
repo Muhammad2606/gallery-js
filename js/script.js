@@ -39,25 +39,24 @@ function createItem() {
             itemBox.appendChild(boxFooter);
 
             itemBox.classList.add('item');
-            boxImg.classList.add('img');
+            boxImg.classList.add('img', 'loader');
             boxFooter.classList.add('title');
+            view.style.opacity = 0
+            date.style.opacity = 0
+            img.addEventListener('load', () => {
+                boxImg.classList.remove('loader');
+                view.style.opacity = 1
+                date.style.opacity = 1
+            });
 
             boxImg.addEventListener('click', () => showImageDetails(item));
 
             parent.appendChild(itemBox);
-            if(boxImg === null){
-                itemBox.classList.add('loader')
-            }
-            else{
-                itemBox.classList.remove('loader')
-
-            }
         });
     });
 }
 
 function showImageDetails(item) {
-
     if (currentDetailBox) {
         currentDetailBox.remove();
     }
