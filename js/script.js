@@ -1,5 +1,4 @@
 const parent = document.querySelector('.gallery__content');
-let arr = [];
 
 async function getImgData() {
     try {
@@ -26,7 +25,6 @@ function createItem() {
                 boxImg = document.createElement('div'),
                 boxFooter = document.createElement('div');
 
-            // Set attributes and text content
             img.setAttribute('src', item.image);
             p.textContent = item.title;
             view.textContent = ' views ' + item.views;
@@ -38,7 +36,6 @@ function createItem() {
             boxFooter.appendChild(view);
             itemBox.appendChild(boxImg);
             itemBox.appendChild(boxFooter);
-
 
             itemBox.classList.add('item');
             boxImg.classList.add('img');
@@ -52,7 +49,29 @@ function createItem() {
 }
 
 function getImageById(item) {
-    console.log(item);
+    const cardBox = document.createElement('div'),
+        descBox = document.createElement('div'),
+        imgBox = document.createElement('div'),
+        image = document.createElement('img'),
+        title = document.createElement('p'),
+        views = document.createElement('span'),
+        date = document.createElement('span');
+
+    image.setAttribute('src', item.image);
+    title.textContent = item.title;
+    date.textContent = item.date;
+    views.textContent = item.views;
+
+    imgBox.appendChild(image);
+    imgBox.appendChild(title);
+    descBox.appendChild(date);
+    descBox.appendChild(views);
+
+    cardBox.appendChild(imgBox);
+    cardBox.appendChild(descBox);
+
+    document.body.appendChild(cardBox);
+    console.log(cardBox);
 }
 
 createItem();
