@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    text-decoration: none;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: all 0.5s ease;
+  }
+  .container {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+  
+  .navigation {
+    width: 100%;
+  }
+  .navbar {
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navbar a {
+    font-size: 1.4rem;
+    color: black;
+    position: relative;
+  }
+  .navbar a:last-child:after {
+    position: absolute;
+    content: "";
+    width: 0%;
+    height: 4px;
+    background-color: aqua;
+    bottom: -10px;
+    left: 0;
+    transition: all 0.2s linear;
+  }
+  .navbar a:last-child:hover:after {
+    width: 50%;
+  }
+  
+  .navbar a:last-child::before {
+    position: absolute;
+    content: "";
+    width: 0%;
+    height: 4px;
+    background-color: red;
+    bottom: -10px;
+    right: 0;
+    transition: all 0.2s linear;
+  }
+  .navbar a:last-child:hover::before {
+    width: 50%;
+  }
+  
+  .gallery {
+    width: 100%;
+    padding: 3rem 0;
+  }
+  
+  .gallery__content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+  .gallery__content .item .img {
+    position: relative;
+  }
+  .gallery__content .item .img:hover img {
+    filter: brightness(40%);
+  }
+  
+  .gallery__content .item .img p {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    transition: all 0.5s linear;
+  }
+  .gallery__content .item .img:hover p {
+    opacity: 1;
+    width: 70%;
+    height: 70%;
+  }
+  .gallery__content .item .title {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+  .gallery__content .item .title span {
+    font-weight: 600;
+  }
+  
