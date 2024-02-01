@@ -45,6 +45,13 @@ function createItem() {
             boxImg.addEventListener('click', () => showImageDetails(item));
 
             parent.appendChild(itemBox);
+            if(boxImg === null){
+                itemBox.classList.add('loader')
+            }
+            else{
+                itemBox.classList.remove('loader')
+
+            }
         });
     });
 }
