@@ -1,25 +1,23 @@
 const parent = document.querySelector('.gallery__content');
+let arr = [];
 
 async function getImgData() {
     try {
-        const data = await fetch('data/data.json')
-        if (!data.ok) {
-            throw new Error('xattolik bor')
+        const response = await fetch('data/data.json');
 
+        if (!response.ok) {
+            throw new Error('Error fetching data');
         }
-        return data.json()
+
+        return response.json();
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
-
-
 function createItem() {
-
-
     getImgData().then(data => {
-        data.map(item => {
+        data.forEach(item => {
             const img = document.createElement('img'),
                 p = document.createElement('p'),
                 view = document.createElement('span'),
@@ -27,27 +25,34 @@ function createItem() {
                 itemBox = document.createElement('div'),
                 boxImg = document.createElement('div'),
                 boxFooter = document.createElement('div');
-            img.setAttribute('src', item.image)
-            p.textContent = item.title
-            view.textContent = ' views ' + item.views
-            date.textContent = item.date
-            boxImg.appendChild(img)
-            boxImg.appendChild(p)
-            boxFooter.appendChild(date)
-            boxFooter.appendChild(view)
-            itemBox.appendChild(boxImg)
-            itemBox.appendChild(boxFooter)
-            parent.appendChild(itemBox)
-            itemBox.classList.add('item')
-            boxImg.classList.add('img')
-            boxFooter.classList.add('title')
 
-        })
+            // Set attributes and text content
+            img.setAttribute('src', item.image);
+            p.textContent = item.title;
+            view.textContent = ' views ' + item.views;
+            date.textContent = item.date;
 
-    })
+            boxImg.appendChild(img);
+            boxImg.appendChild(p);
+            boxFooter.appendChild(date);
+            boxFooter.appendChild(view);
+            itemBox.appendChild(boxImg);
+            itemBox.appendChild(boxFooter);
+
+
+            itemBox.classList.add('item');
+            boxImg.classList.add('img');
+            boxFooter.classList.add('title');
+
+            boxImg.addEventListener('click', () => getImageById(item));
+
+            parent.appendChild(itemBox);
+        });
+    });
 }
 
-createItem()
-function getImageById(id) {
-    console.log("Hello")
+function getImageById(item) {
+    console.log(item);
 }
+
+createItem();
