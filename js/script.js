@@ -1,4 +1,5 @@
 const parent = document.querySelector('.gallery__content');
+let currentDetailBox = null;
 
 async function getImgData() {
     try {
@@ -41,16 +42,26 @@ function createItem() {
             boxImg.classList.add('img');
             boxFooter.classList.add('title');
 
-            boxImg.addEventListener('click', () => getImageById(item));
+            boxImg.addEventListener('click', () => showImageDetails(item));
 
             parent.appendChild(itemBox);
         });
     });
 }
 
-function getImageById(item) {
-    const cardBox = document.createElement('div'),
-        descBox = document.createElement('div'),
+function showImageDetails(item) {
+
+    if (currentDetailBox) {
+        currentDetailBox.remove();
+    }
+    const detailBox = createDetailBox(item);
+    document.body.appendChild(detailBox);
+
+    currentDetailBox = detailBox;
+}
+
+function createDetailBox(item) {
+    const detailBox = document.createElement('div'),
         imgBox = document.createElement('div'),
         image = document.createElement('img'),
         title = document.createElement('p'),
@@ -60,18 +71,19 @@ function getImageById(item) {
     image.setAttribute('src', item.image);
     title.textContent = item.title;
     date.textContent = item.date;
-    views.textContent = item.views;
+    views.textContent = ' views ' + item.views;
 
     imgBox.appendChild(image);
     imgBox.appendChild(title);
-    descBox.appendChild(date);
-    descBox.appendChild(views);
 
-    cardBox.appendChild(imgBox);
-    cardBox.appendChild(descBox);
+    detailBox.appendChild(imgBox);
+    detailBox.appendChild(date);
+    detailBox.appendChild(views);
 
-    document.body.appendChild(cardBox);
-    console.log(cardBox);
+    detailBox.classList.add('detail-box');
+    imgBox.classList.add('img');
+
+    return detailBox;
 }
 
 createItem();
