@@ -152,7 +152,11 @@ const year = today.getFullYear();
 
 const allData =  `${day} ${month} ${year}`
 
-// const close = tegma
+const close = document.querySelector('span')
+
+close.addEventListener('click', () =>{
+  created.remove()
+})
 
 function addCreateItem (){
  const newCard =  {
