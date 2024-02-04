@@ -41,6 +41,7 @@ function createItem() {
             itemBox.classList.add('item');
             boxImg.classList.add('img', 'loader');
             boxFooter.classList.add('title');
+            boxImg.style.cursor = 'pointer'
             view.style.opacity = 0
             date.style.opacity = 0
             img.addEventListener('load', () => {
