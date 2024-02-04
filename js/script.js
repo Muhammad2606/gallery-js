@@ -1,12 +1,12 @@
-const parent = document.querySelector('.gallery__content');
+const parent = document.querySelector(".gallery__content");
 let currentDetailBox = null;
 
 async function getImgData() {
     try {
-        const response = await fetch('data/data.json');
+        const response = await fetch("data/data.json");
 
         if (!response.ok) {
-            throw new Error('Error fetching data');
+            throw new Error("Error fetching data");
         }
 
         return response.json();
@@ -16,19 +16,19 @@ async function getImgData() {
 }
 
 function createItem() {
-    getImgData().then(data => {
-        data.forEach(item => {
-            const img = document.createElement('img'),
-                p = document.createElement('p'),
-                view = document.createElement('span'),
-                date = document.createElement('span'),
-                itemBox = document.createElement('div'),
-                boxImg = document.createElement('div'),
-                boxFooter = document.createElement('div');
+    getImgData().then((data) => {
+        data.forEach((item, index) => {
+            const img = document.createElement("img"),
+                p = document.createElement("p"),
+                view = document.createElement("span"),
+                date = document.createElement("span"),
+                itemBox = document.createElement("div"),
+                boxImg = document.createElement("div"),
+                boxFooter = document.createElement("div");
 
-            img.setAttribute('src', item.image);
+            img.setAttribute("src", item.image);
             p.textContent = item.title;
-            view.textContent = ' views ' + item.views;
+            view.textContent = " views " + item.views;
             date.textContent = item.date;
 
             boxImg.appendChild(img);
@@ -41,7 +41,6 @@ function createItem() {
             itemBox.classList.add('item');
             boxImg.classList.add('img', 'loader');
             boxFooter.classList.add('title');
-            boxImg.style.cursor = 'pointer'
             view.style.opacity = 0
             date.style.opacity = 0
             img.addEventListener('load', () => {
@@ -53,42 +52,62 @@ function createItem() {
             boxImg.addEventListener('click', () => showImageDetails(item));
 
             parent.appendChild(itemBox);
+
+            // Add data-item-index attribute for event delegation
+            itemBox.dataset.itemIndex = index;
+        });
+
+        // Event delegation for item click
+        parent.addEventListener("click", (event) => {
+            const target = event.target;
+            const itemIndex = target.closest(".item")?.dataset.itemIndex;
+
+            if (itemIndex !== undefined) {
+                const item = data[itemIndex];
+                showImageDetails(item);
+            }
         });
     });
 }
 
 function showImageDetails(item) {
     if (currentDetailBox) {
+        currentDetailBox.classList.add("closed");
+
         currentDetailBox.remove();
+
     }
+
     const detailBox = createDetailBox(item);
     document.body.appendChild(detailBox);
-
     currentDetailBox = detailBox;
 }
 
 function createDetailBox(item) {
-    const detailBox = document.createElement('div'),
-        imgBox = document.createElement('div'),
-        image = document.createElement('img'),
-        title = document.createElement('p'),
-        views = document.createElement('span'),
-        date = document.createElement('span');
+    const detailBox = document.createElement("div"),
+        imgBox = document.createElement("div"),
+        image = document.createElement("img"),
+        title = document.createElement("p"),
+        views = document.createElement("span"),
+        date = document.createElement("span");
 
-    image.setAttribute('src', item.image);
+    image.setAttribute("src", item.image);
     title.textContent = item.title;
     date.textContent = item.date;
-    views.textContent = ' views ' + item.views;
+    views.textContent = " views " + item.views;
 
     imgBox.appendChild(image);
-    imgBox.appendChild(title);
-
     detailBox.appendChild(imgBox);
-    detailBox.appendChild(date);
-    detailBox.appendChild(views);
 
-    detailBox.classList.add('detail-box');
-    imgBox.classList.add('img');
+    detailBox.classList.add("detail__box");
+    imgBox.classList.add("img");
+
+    detailBox.addEventListener('click', () => {
+        detailBox.classList.add('closed');
+
+        detailBox.remove();
+
+    });
 
     return detailBox;
 }
