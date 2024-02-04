@@ -40,6 +40,7 @@ function createItem() {
 
             itemBox.classList.add('item');
             boxImg.classList.add('img', 'loader');
+            boxImg.style.cursor = 'pointer'
             boxFooter.classList.add('title');
             view.style.opacity = 0
             date.style.opacity = 0
