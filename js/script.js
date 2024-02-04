@@ -112,59 +112,58 @@ function createDetailBox(item) {
 }
 createItem();
 
-const created = document.querySelector(".createElement");
-const inputImage = created.querySelector(".inputImage");
-const inputTitle = created.querySelector(".inputTitle");
-const inputSubmit = created.querySelector(".inputSubmit");
+// const created = document.querySelector(".createElement");
+// const inputImage = created.querySelector(".inputImage");
+// const inputTitle = created.querySelector(".inputTitle");
+// const inputSubmit = created.querySelector(".inputSubmit");
 
-let title = "";
-let image = ""
-inputTitle.addEventListener("input", () => {
-  title = inputTitle.value;
-});
+// let title = "";
+// let image = ""
+// inputTitle.addEventListener("input", () => {
+//   title = inputTitle.value;
+// });
 
-inputImage.addEventListener("input", () => {
-  image = inputImage.value;
-});
+// inputImage.addEventListener("input", () => {
+//   image = inputImage.value;
+// });
 
-inputSubmit.addEventListener('click', (event) =>{
-    event.preventDefault()
-    console.log(title);
-    console.log(image);
-})
+// inputSubmit.addEventListener('click', (event) =>{
+//     event.preventDefault()
+//     console.log(title);
+//     console.log(image);
+// })
 
-function generateRanNUm() {
-  return Math.floor(Math.random() * (10001 - 5000) + 5000);
-}
-const num = generateRanNUm()
-console.log(num);
-const monthNames = [
-  "Jan", "Feb", "March", "April",
-  "May", "June", "July", "Aug",
-  "Sep", "Oct", "Nov", "Dec"
-];
+// function generateRanNUm() {
+//   return Math.floor(Math.random() * (10001 - 5000) + 5000);
+// }
+// const num = generateRanNUm()
+// console.log(num);
+// const monthNames = [
+//   "Jan", "Feb", "March", "April",
+//   "May", "June", "July", "Aug",
+//   "Sep", "Oct", "Nov", "Dec"
+// ];
 
-const today = new Date();
-const day = today.getDate();
-const monthIndex = today.getMonth();
-const month = monthNames[monthIndex];
-const year = today.getFullYear();
+// const today = new Date();
+// const day = today.getDate();
+// const monthIndex = today.getMonth();
+// const month = monthNames[monthIndex];
+// const year = today.getFullYear();
 
-const allData =  `${day} ${month} ${year}`
+// const allData =  `${day} ${month} ${year}`
 
-const close = document.querySelector('span')
+// const close = document.querySelector('span')
 
-close.addEventListener('click', () =>{
-  created.remove()
-})
+// close.addEventListener('click', () =>{
+//   created.remove()
+// })
 
-function addCreateItem (){
- const newCard =  {
-    "id": num,
-    "title": title,
-    "image": image,
-    "views": num,
-    "date": allData,
-}
-
-} 
+// function addCreateItem (){
+//  const  newCard =  {
+//     "id": num,
+//     "title": title,
+//     "image": image,
+//     "views": num,
+//     "date": allData,
+// }
+// } 
