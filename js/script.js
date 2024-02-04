@@ -114,3 +114,5 @@ function createDetailBox(item) {
 }
 
 createItem();
+
+
