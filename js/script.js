@@ -38,19 +38,19 @@ function createItem() {
             itemBox.appendChild(boxImg);
             itemBox.appendChild(boxFooter);
 
-            itemBox.classList.add('item');
-            boxImg.classList.add('img', 'loader');
-            boxImg.style.cursor = 'pointer'
-            boxFooter.classList.add('title');
-            view.style.opacity = 0
-            date.style.opacity = 0
-            img.addEventListener('load', () => {
-                boxImg.classList.remove('loader');
-                view.style.opacity = 1
-                date.style.opacity = 1
+            itemBox.classList.add("item");
+            boxImg.classList.add("img", "loader");
+            boxImg.style.cursor = "pointer";
+            boxFooter.classList.add("title");
+            view.style.opacity = 0;
+            date.style.opacity = 0;
+            img.addEventListener("load", () => {
+                boxImg.classList.remove("loader");
+                view.style.opacity = 1;
+                date.style.opacity = 1;
             });
 
-            boxImg.addEventListener('click', () => showImageDetails(item));
+            boxImg.addEventListener("click", () => showImageDetails(item));
 
             parent.appendChild(itemBox);
 
@@ -76,7 +76,6 @@ function showImageDetails(item) {
         currentDetailBox.classList.add("closed");
 
         currentDetailBox.remove();
-
     }
 
     const detailBox = createDetailBox(item);
@@ -103,16 +102,12 @@ function createDetailBox(item) {
     detailBox.classList.add("detail__box");
     imgBox.classList.add("img");
 
-    detailBox.addEventListener('click', () => {
-        detailBox.classList.add('closed');
+    detailBox.addEventListener("click", () => {
+        detailBox.classList.add("closed");
 
         detailBox.remove();
-
     });
 
     return detailBox;
 }
-
 createItem();
-
-
