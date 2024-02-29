@@ -10,7 +10,8 @@
 }
 @media only screen and (max-width: 468px) {
   .detail__box {
-    width: 90%;
+    width: 100%;
+    padding: 1rem 0;
   }
   .gallery__content {
     grid-template-columns: 1fr;
