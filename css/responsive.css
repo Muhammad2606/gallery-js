@@ -9,6 +9,9 @@
   }
 }
 @media only screen and (max-width: 468px) {
+  .detail__box {
+    width: 90%;
+  }
   .gallery__content {
     grid-template-columns: 1fr;
   }

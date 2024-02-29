@@ -123,39 +123,3 @@
     
   }
   
-  .createElement{
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100vh;
-     background-color: rgba($color: #000000, $alpha: 0.9);
-     padding: 4rem 0;
-  }
-  .createElement {
-    .closeCreate{
-      position: absolute;
-      right: 20px;
-      top: 10px;
-      color: #fcfcfc;
-      font-size: 3rem;
-    }
-    form{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1rem;
-      input{
-        width: 40%;
-        height: 7vh;
-        margin: 0 auto;
-        border: 2px solid  white;
-        background-color: rgba($color: #fcfcfc, $alpha: 0.9);
-        font-size: 1.2rem;
-        text-indent: 10px;
-        &::placeholder{
-          color: #000000;
-        }
-      }
-    }
-  }
